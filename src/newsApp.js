@@ -1,5 +1,8 @@
-var NewsApp = function () {
-  this.summarisedArticle = "";
+var NewsApp = function() {
+  this.urlArray = [];
+  this.headlineArray = [];
+  this.summaryArray = [];
+  this.fullArticleArray = [];
 };
 
 var getJSON = function(url) {
@@ -19,24 +22,30 @@ var getJSON = function(url) {
   });
 };
 
-getJSON('https://content.guardianapis.com/search?api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
-    // alert('Your Json result is:  ' + data);
-    var myDiv = document.getElementById('headline');
-    var headline = "";
-    for (i=0; i < data.response.results.length; i++) {
-      var article = data.response.results[i].webTitle;
-      var link = data.response.results[i].webUrl;
-      headline += "<a id=link" + i + " href=#" + article + "</a>" + article + "<br>";
-      myDiv.innerHTML = headline;
-    }
-}, function(status) { //error detection....
-  alert('Something went wrong.');
-});
+getJSON('http://content.guardianapis.com/search?show-fields=all&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
+  newsApp = new NewsApp();
+  var myDiv = document.getElementById('headline');
+  var headline = "";
+  for (i=0; i < data.response.results.length; i++) {
+    var article = data.response.results[i].webTitle;
+    headline += "<a href=#" + article + "</a>" + article + "<br>";
 
-NewsApp.prototype.summarise = function(link) {
-  var summarisedArticle = "http://news-summary-api.herokuapp.com/aylien?apiRequestUrl=https://api.aylien.com/api/v1/summarize?url=" + link;
-  return summarisedArticle; 
-};
+    newsApp.headlineArray.push(data.response.results[i].webTitle);
+    newsApp.urlArray.push(data.response.results[i].webUrl);
+    newsApp.fullArticleArray.push(data.response.results[i].fields.body);
+    myDiv.innerHTML = headline;
+  }
+  var mySumDiv = document.getElementById('summary');
+  var summary = "";
+    for (var i = 0; i < data.response.results.length; i++) {
+      var sumUrl = data.response.results[i].webUrl;
+      getJSON('http://news-summary-api.herokuapp.com/aylien?apiRequestUrl=https://api.aylien.com/api/v1/summarize?url=' + sumUrl).then(function(dataSum) {
+        newsApp.summaryArray.push(dataSum.sentences);
+      });
+    }
+  }, function(status) { //error detection....
+    alert('Something went wrong.');
+});
 
 function clickCreateSummary() {
   document
@@ -48,4 +57,3 @@ function clickCreateSummary() {
 }
 
 clickCreateSummary();
-summarise(link);
