@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/groundberry/news-summary-project/issues"
   },
-  "homepage": "https://github.com/groundberry/news-summary-project#readme"
+  "homepage": "https://github.com/groundberry/news-summary-project#readme",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
 }
