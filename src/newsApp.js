@@ -15,7 +15,7 @@ var getJSON = function(url) {
   });
 };
 
-getJSON('https://content.guardianapis.com/search?show-fields=body&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
+getJSON('https://content.guardianapis.com/search?show-fields=all&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
     // alert('Your Json result is:  ' + data);
     console.log(2);
     var myDiv = document.getElementById('headline');
@@ -28,7 +28,7 @@ getJSON('https://content.guardianapis.com/search?show-fields=body&api-key=f82b73
   alert('Something went wrong.');
 });
 
-getJSON('http://content.guardianapis.com/search?show-fields=body&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
+getJSON('http://content.guardianapis.com/search?show-fields=all&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
   // function displayBody(data) {
     console.log(1);
     var myDiv2 = document.getElementById('fullArticle');
