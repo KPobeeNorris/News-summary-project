@@ -1,0 +1,19 @@
+{
+  "name": "news-summary-project",
+  "version": "1.0.0",
+  "description": "As a busy politician   I can see all of today's headlines in one place   So I know what the big stories of the day are",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/groundberry/news-summary-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/groundberry/news-summary-project/issues"
+  },
+  "homepage": "https://github.com/groundberry/news-summary-project#readme"
+}
