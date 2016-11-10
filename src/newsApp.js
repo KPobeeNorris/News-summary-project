@@ -28,7 +28,8 @@ getJSON('http://content.guardianapis.com/search?show-fields=all&api-key=f82b7327
   var headline = "";
   for (i=0; i < data.response.results.length; i++) {
     var article = data.response.results[i].webTitle;
-    headline += "<a href=#" + article + "</a>" + article + "<br>";
+    var link = data.response.results[i].webTitle.replace(/\s/g, "_")
+    headline += "<a id=link" + i + " href=#" + link + ">"+ article + "</a><br>";
 
     newsApp.headlineArray.push(data.response.results[i].webTitle);
     newsApp.urlArray.push(data.response.results[i].webUrl);
@@ -47,12 +48,15 @@ getJSON('http://content.guardianapis.com/search?show-fields=all&api-key=f82b7327
     alert('Something went wrong.');
 });
 
+
+
 function clickCreateSummary() {
   document
-  .getElementById(link)
+  .getElementById("link1")
   .addEventListener("click", function(clickEvent){
     clickEvent.preventDefault();
-    summarise(headline);
+    var mySumDiv = document.getElementById('summary');
+    mySumDiv.innerHTML = newsApp.summaryArray[0]
   });
 }
 
