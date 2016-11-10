@@ -16,13 +16,13 @@ var getJSON = function(url) {
 };
 
 getJSON('http://content.guardianapis.com/search?show-fields=body&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
-    // alert('Your Json result is:  ' + data);
     var myDiv = document.getElementById('headline');
     var headline = "";
     for (i=0; i < data.response.results.length; i++) {
       headline += data.response.results[i].webTitle + "<br>"+ "<br>"
       myDiv.innerHTML = headline;
     }
+
     var mySumDiv = document.getElementById('summary');
     var summary = "";
     for (i=0; i < data.response.results.length; i++) {
@@ -33,7 +33,3 @@ getJSON('http://content.guardianapis.com/search?show-fields=body&api-key=f82b732
       })
     };
 })
-
-
-
-// console.log(data.response.results[1].webTitle)
