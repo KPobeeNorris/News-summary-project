@@ -1,3 +1,10 @@
+var NewsApp = function() {
+  this.urlArray = []
+  this.headlineArray = []
+  this.summaryArray = []
+  this.fullArticleArray = []
+}
+
 var getJSON = function(url) {
   return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
@@ -15,11 +22,15 @@ var getJSON = function(url) {
   });
 };
 
-getJSON('http://content.guardianapis.com/search?show-fields=body&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
+getJSON('http://content.guardianapis.com/search?show-fields=all&api-key=f82b7327-9c62-42a9-a8e5-fb351c498b90').then(function(data) {
+    newsApp = new NewsApp();
     var myDiv = document.getElementById('headline');
     var headline = "";
     for (i=0; i < data.response.results.length; i++) {
       headline += data.response.results[i].webTitle + "<br>"+ "<br>"
+      newsApp.headlineArray .push(data.response.results[i].webTitle)
+      newsApp.urlArray.push(data.response.results[i].webUrl)
+      newsApp.fullArticleArray.push(data.response.results[i].fields.body)
       myDiv.innerHTML = headline;
     }
 
@@ -28,8 +39,9 @@ getJSON('http://content.guardianapis.com/search?show-fields=body&api-key=f82b732
     for (i=0; i < data.response.results.length; i++) {
       var sumUrl = data.response.results[i].webUrl
       getJSON('http://news-summary-api.herokuapp.com/aylien?apiRequestUrl=https://api.aylien.com/api/v1/summarize?url='+sumUrl).then(function(dataSum) {
-        summary += dataSum.sentences + "<br>"+ "<br>"
-        mySumDiv.innerHTML = summary;
+        newsApp.summaryArray.push(dataSum.sentences)
+        // summary += dataSum.sentences + "<br>"+ "<br>"
+        // mySumDiv.innerHTML = summary
       })
     };
 })
