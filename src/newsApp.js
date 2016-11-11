@@ -44,7 +44,7 @@
     this.url = data.url;
     this.summary = data.title; // temporary
     this.body = data.body;
-    this.image = data.image
+    this.image = data.image;
   }
 
   NewsItem.prototype.getSummary = function () {
@@ -86,7 +86,7 @@
     link.className = 'link';
     link.href = '#';
 
-    listImage.src = newsItem.image
+    listImage.src = newsItem.image;
 
     var linkText = document.createTextNode(newsItem.title);
 
@@ -105,8 +105,8 @@
     var targetIndex = parseInt(targetId.replace('link', ''), 10);
     var newsItem = newsApp.news[targetIndex];
     summary.innerHTML = newsItem.summary;
-    fullBodyId.id = targetIndex
-    fullArticle.innerHTML = ''
+    fullBodyId.id = targetIndex;
+    fullArticle.innerHTML = '';
   }
 
   function listenClicks() {
