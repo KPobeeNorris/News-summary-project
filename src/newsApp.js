@@ -68,10 +68,18 @@
   var summary = document.getElementById('summary');
   var headlines = document.getElementById('headlines');
 
+  //
+  var summaryLink = document.getElementById('summaryLink');
+  var fullArticle = document.getElementById('fullArticle');
+  var headlines1 = document.getElementById('headlines1');
+  //
+
   function generateNewsItemLinks() {
     newsApp.news.forEach(function (newsItem, i) {
       // Add news item link to headlines.
       headlines.appendChild(generateNewsItemLink(newsItem, i));
+      //
+      headlines1.appendChild(generateNewsItemLink(newsItem, i));
     });
   }
 
@@ -98,11 +106,27 @@
     var targetIndex = parseInt(targetId.replace('link', ''), 10);
     var newsItem = newsApp.news[targetIndex];
     summary.innerHTML = newsItem.summary;
+    summaryLink.innerHML = text;
   }
 
   function listenClicks() {
     headlines.addEventListener('click', onNewsItemClick);
+    //
+    headlines1.addEventListener('click', onSummaryItemClick);
+
   }
+
+  //////////////////////////
+
+  function onSummaryItemClick(evt) {
+    evt.preventDefault();
+    var target = evt.target;
+    var targetId = target.id;
+    var targetIndex = parseInt(targetId.replace('link', ''), 10);
+    var newsItem = newsApp.news[targetIndex];
+    fullArticle.innerHTML = newsItem.body;
+  }
+
 
   // HELPERS ----------------------------------------------------------
 
