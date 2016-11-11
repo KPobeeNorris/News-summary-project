@@ -20,7 +20,8 @@
     var newsItem = new NewsItem({
       title: data.webTitle,
       url: data.webUrl,
-      body: data.fields.body
+      body: data.fields.body,
+      image: data.fields.thumbnail
     });
     // Add news item to collection.
     this.news.push(newsItem);
@@ -43,6 +44,7 @@
     this.url = data.url;
     this.summary = data.title; // temporary
     this.body = data.body;
+    this.image = data.image
   }
 
   NewsItem.prototype.getSummary = function () {
@@ -73,6 +75,7 @@
     newsApp.news.forEach(function (newsItem, i) {
       // Add news item link to headlines.
       headlines.appendChild(generateNewsItemLink(newsItem, i));
+      headlines.appendChild(generateNewsItemImage(newsItem, i));
     });
   }
 
@@ -90,6 +93,17 @@
     listItem.appendChild(link);
 
     return listItem;
+  }
+
+  function generateNewsItemImage(newsItem, i) {
+    var listImage = document.createElement('img');
+    var link = document.getElementsByTagName('a');
+
+
+    listImage.src = this.image;
+    link.appendChild(listImage);
+
+    return listImage;
   }
 
   function onNewsItemClick(evt) {
