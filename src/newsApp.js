@@ -75,36 +75,28 @@
     newsApp.news.forEach(function (newsItem, i) {
       // Add news item link to headlines.
       headlines.appendChild(generateNewsItemLink(newsItem, i));
-      headlines.appendChild(generateNewsItemImage(newsItem, i));
     });
   }
 
   function generateNewsItemLink(newsItem, i) {
     var listItem = document.createElement('li');
-
+    var listImage = document.createElement('img');
     var link = document.createElement('a');
     link.id = 'link' + i;
     link.className = 'link';
     link.href = '#';
 
+    listImage.src = newsItem.image
+
     var linkText = document.createTextNode(newsItem.title);
 
     link.appendChild(linkText);
     listItem.appendChild(link);
+    listItem.appendChild(listImage);
 
     return listItem;
   }
 
-  function generateNewsItemImage(newsItem, i) {
-    var listImage = document.createElement('img');
-    var link = document.getElementsByTagName('a');
-
-
-    listImage.src = this.image;
-    link.appendChild(listImage);
-
-    return listImage;
-  }
 
   function onNewsItemClick(evt) {
     evt.preventDefault();
