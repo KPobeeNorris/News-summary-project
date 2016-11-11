@@ -22,10 +22,8 @@
       url: data.webUrl,
       body: data.fields.body
     });
-
     // Add news item to collection.
     this.news.push(newsItem);
-
     // Fetch summary asynchronously.
     newsItem.getSummary();
   };
@@ -68,19 +66,13 @@
   var summary = document.getElementById('summary');
   var headlines = document.getElementById('headlines');
 
-  //
   var fullArticle = document.getElementById('fullArticle');
-  var headlines1 = document.getElementById('headlines1');
-  //
   var fullBodyId = document.getElementById('linkForFull');
-
 
   function generateNewsItemLinks() {
     newsApp.news.forEach(function (newsItem, i) {
       // Add news item link to headlines.
       headlines.appendChild(generateNewsItemLink(newsItem, i));
-      //
-      // headlines1.appendChild(generateNewsItemLink(newsItem, i));
     });
   }
 
@@ -113,9 +105,7 @@
 
   function listenClicks() {
     headlines.addEventListener('click', onNewsItemClick);
-    //
     fullBodyId.addEventListener('click', onSummaryItemClick);
-
   }
 
   //////////////////////////
@@ -149,12 +139,10 @@
     });
   }
 
-
   // EXECUTION --------------------------------------------------------
 
   var newsApp = new NewsApp();
   newsApp.getNews()
     .then(generateNewsItemLinks)
     .then(listenClicks);
-
 })();
