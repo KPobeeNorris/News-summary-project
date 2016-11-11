@@ -20,7 +20,8 @@
     var newsItem = new NewsItem({
       title: data.webTitle,
       url: data.webUrl,
-      body: data.fields.body
+      body: data.fields.body,
+      image: data.fields.thumbnail
     });
     // Add news item to collection.
     this.news.push(newsItem);
@@ -43,6 +44,7 @@
     this.url = data.url;
     this.summary = data.title; // temporary
     this.body = data.body;
+    this.image = data.image
   }
 
   NewsItem.prototype.getSummary = function () {
@@ -78,19 +80,23 @@
 
   function generateNewsItemLink(newsItem, i) {
     var listItem = document.createElement('li');
-
+    var listImage = document.createElement('img');
     var link = document.createElement('a');
     link.id = 'link' + i;
     link.className = 'link';
     link.href = '#';
 
+    listImage.src = newsItem.image
+
     var linkText = document.createTextNode(newsItem.title);
 
     link.appendChild(linkText);
     listItem.appendChild(link);
+    listItem.appendChild(listImage);
 
     return listItem;
   }
+
 
   function onNewsItemClick(evt) {
     evt.preventDefault();
