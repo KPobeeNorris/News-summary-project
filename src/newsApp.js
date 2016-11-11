@@ -26,7 +26,7 @@
     // Add news item to collection.
     this.news.push(newsItem);
     // Fetch summary asynchronously.
-    newsItem.getSummary();
+    // newsItem.getSummary();
   };
 
   NewsApp.prototype.onNewsSuccess = function (data) {

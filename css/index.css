@@ -1,4 +1,36 @@
+h1 {
+  font-family: Merriweather;
+  font-size: 2em;
+  color: #505050;
+}
+
+h2 {
+  font-family: Merriweather;
+  font-size: 1.5em;
+  color: #505050;
+}
+
 a,
 img {
   display: block;
+}
+
+a {
+  font-family: Merriweather;
+  font-size: 1em;
+  color: #505050;
+  text-decoration: none;
+  padding: 1%;
+}
+
+a:hover {
+  color: #e60000;
+}
+
+img {
+  width: 70%;
+}
+
+ul {
+  text-decoration: none;
 }
