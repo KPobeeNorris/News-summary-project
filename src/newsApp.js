@@ -60,7 +60,7 @@
   };
 
   NewsItem.prototype.onSummaryError = function (status) {
-    console.error('Could not fetch summary: ' + status);
+    alert('Could not fetch summary: ' + status);
   };
 
   // VIEWS ------------------------------------------------------------
