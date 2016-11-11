@@ -10,6 +10,13 @@ h2 {
   color: #505050;
 }
 
+p,
+#summary {
+  font-family: Merriweather;
+  font-size: 1em;
+  color: #505050;
+}
+
 a,
 img {
   display: block;
@@ -29,8 +36,24 @@ a:hover {
 
 img {
   width: 70%;
+  margin-top: 7px;
+  margin-bottom: 20px;
 }
 
 ul {
   text-decoration: none;
+}
+
+#headlines {
+  align-content: center;
+}
+
+
+
+@media screen and (max-width: 2000px) and (min-width: 900px) {
+
+  img {
+    width: 600px;
+    height: auto;
+  }
 }
